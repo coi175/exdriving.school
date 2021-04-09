@@ -13,22 +13,25 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
-
+/**
+ * Конфигурация Spring Security
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+    @Autowired // сервис для получения данных логин/пароль из бд
     private UserDetailsServiceIml userDetailsService;
 
-    @Autowired
+    @Autowired // обработчик исключений, который перенапрявляет на 404
     private AccessDeniedHandler accessDeniedHandler;
 
-    @Bean
+    @Bean // ширфование пароля
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // настраиваем доступ к страницам и страницу логина
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -50,12 +53,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler);
     }
 
+    // убираем блокировку Spring Security с ресурсов, чтобы css и другое подключалось как надо
     @Override
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**","/webjars/**", "/css/**", "/js/**");
+                .antMatchers("/resources/**", "/static/**","/webjars/**", "/css/**", "/js/**", "*.js");
     }
+
+    // настраиваем вход, берем данные из userDetailsService, декодируе пароль и сверяем с ввдеенным
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());

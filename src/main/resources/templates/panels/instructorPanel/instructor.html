@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель инструктора | ExDriving School</title>
+    <!-- css стили, бутстрап, javascript скрипты -->
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link th:href="@{/css/instructor.css}" rel="stylesheet" />
+    <script type="text/javascript"
+            src="webjars/jquery/3.0.0/jquery.min.js"></script>
+
+    <script type="text/javascript" th:src="@{/js/client/lessonList.js}"></script>
+
+</head>
+<body>
+<div class="container">
+    <div class="row basic_info">
+        <div class="col client_block">
+            <div class="basic_info_item">
+                Здравствуйте, <span id="clientName" class="basic_info_data">Имя фамилия:</span>
+            </div>
+
+            <div class="basic_info_item">
+                Оставшиеся часы: <br> <span id="remainingHours" class="basic_info_data">5 ч.</span>
+            </div>
+
+            <div class="basic_info_item">
+                Потраченные часы: <br> <span id="spentHours" class="basic_info_data">2 ч.</span>
+            </div>
+        </div>
+
+        <div class="col instructor_block">
+            <div class ="basic_info_item">
+                Ваш инструктор: <span id="instructorName" class="basic_info_data">Имя Фамилия</span>
+            </div>
+
+            <div class="basic_info_item">
+                Кол-во учеников: <br> <span id="studentsCount" class="basic_info_data">8 уч.</span>
+            </div>
+
+            <div class="basic_info_item">
+                Машина: <br><span id="instructorCar" class="basic_info_data">Reno Logan A134CA77</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="tab">
+            <!-- Кнопки для переключения между вкладками-->
+            <button id="LessonTab" class="tablinks" onclick="openTab(event, 'Lessons')">Занятия</button>
+            <button id="NotificationTab" class="tablinks" onclick="openTab(event, 'Notifications')">Уведомления</button>
+            <button class="tablinks" onclick="openTab(event, 'Marks')">Оценки</button>
+            <button class="tablinks" onclick="openTab(event, 'Certificates')">Сертификаты</button>
+        </div>
+    </div>
+
+
+    <!-- Вкладки, между которыми может переключаться пользователь -->
+
+    <!-- ЗАНЯТИЯ -->
+    <div id="Lessons" class="tabcontent">
+        <div class="row mt-4">
+            <div class="col text-center">
+                <h2>
+                    Текущее занятие
+                </h2>
+                <div id="CurrentLesson" class="current_lesson_block">
+
+                </div>
+                <button id="cancelRecording" class="cancel_lesson_button">Отменить запись</button>
+                <p><br><br><br>*Инструктор может отменить/перенести занятие, будьте внимательным, вам придет уведомление.</p>
+            </div>
+
+            <div class="col text-center">
+                <h2>
+                    Список занятий
+                </h2>
+                <div id="lessonList" class="lesson_list_block">
+                    <span style="font-style: italic">*Занятий не найдено <br><span style="font-style: normal; font-size: 30px">&#128203;</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- УВЕДОМЛЕНИЯ -->
+    <div id="Notifications" class="tabcontent">
+        <div id = "NotificationList" class="row notification_block">
+
+        </div>
+        <div class="row mt-4">
+            <button id="NotificationClearButton" type="button" class="notification_button btn m-auto" >Всё прочитано</button>
+        </div>
+    </div>
+
+    <!-- ОЦЕНКИ -->
+    <div id="Marks" class="tabcontent">
+        <div class="row mt-4">
+            <div class="col text-center mark_average_block">
+                <h2 class="mark_average_title">
+                    Cредняя оценка за занятия
+                </h2>
+                <span id = "markAverage" class="mark_average"></span>
+            </div>
+            <div id="markListBlock" class="col mark_list_block">
+                <div class="row text-center mark_list_line">
+                    <div class="col mark_list_item">
+                        <span style="font-weight: bold"> Дата занятия</span>
+                    </div>
+                    <div class="col mark_list_item">
+                        <span style="font-weight: bold">Время занятия</span>
+                    </div>
+                    <div class="col mark_list_item">
+                        <span style="font-weight: bold">Оценка</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 200px;">
+            <p class="text-center m-auto font-italic">
+                *Средняя оценка определяется по результатам всех пройденных занятий автоматически, <br> на её основе школа решает, какой сертификат будет выдан по окончанию обучения.
+            </p>
+        </div>
+    </div>
+
+    <!-- СЕРТИФИКАТЫ -->
+    <div id="Certificates" class="tabcontent">
+
+
+    </div>
+</div>
+<!-- открывает вкладку Lessons при загрузке страницы -->
+<script th:inline="javascript">document.getElementById("LessonTab").click()</script>
+</body>
+</html>

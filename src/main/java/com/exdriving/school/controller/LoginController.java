@@ -9,27 +9,34 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class LoginController {
+    // привязываем страницу логина к адресу /login
     @GetMapping("/login")
     public String login() {
         return "/login";
     }
 
+    // то же для рута, страница index
     @GetMapping("/")
     public String index(Model model) {
         return "/index";
     }
 
+    // адрес /default используем для перенапрявление на нужную страницу в зависимости от роли пользователя
     @RequestMapping("/default")
     public String defaultAfterLogin(HttpServletRequest request) {
+        // если админ, перенапралвяем на панель админа
         if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin/";
+            return "redirect:/admin";
         }
+        // инструктор - панель инструктора
         else if(request.isUserInRole("ROLE_INSTRUCTOR")) {
-            return "redirect:/instructor/";
+            return "redirect:/instructor";
         }
+        // клиент - панель клиента
         else if(request.isUserInRole("ROLE_CLIENT")) {
-            return "redirect:/client/";
+            return "redirect:/client";
         }
+        // иначе на начальную страницу, которая не защищена spring security
         else return "redirect:/";
     }
 

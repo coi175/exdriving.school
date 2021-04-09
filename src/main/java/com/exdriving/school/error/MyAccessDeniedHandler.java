@@ -13,10 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// handle 403 page
+// обрабатывае страницу ошибки
 @Component
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
 
+    // создаем logger и записываем в него действия пользователя
     private static Logger logger = LoggerFactory.getLogger(MyAccessDeniedHandler.class);
 
     @Override
@@ -26,13 +27,13 @@ public class MyAccessDeniedHandler implements AccessDeniedHandler {
 
         Authentication auth
                 = SecurityContextHolder.getContext().getAuthentication();
-
+        // записываем действия пользователя в Logger. Admin пытался зайти в панель клиента - пишем, админ в панель админа - не пишем
         if (auth != null) {
             logger.info("Пользователь '" + auth.getName()
                     + "' пытался попасть на страницу "
                     + httpServletRequest.getRequestURI());
         }
-
+        // при ошибке перенаправляем на адрес /403
         httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/403");
 
     }

@@ -18,14 +18,16 @@ public class User {
 
     @Column(name="role")
     private String role;
-    @Column(name = "client_ID")
+
+    @Column(name="client_ID")
     private Integer clientID;
-    @Column(name = "instructor_ID")
+
+    @Column(name="instructor_ID")
     private Integer instructorID;
 
     public User() {}
 
-    public User(String username, String password, String role, int clientID, int instructorID) {
+    public User(String username, String password, String role, Integer clientID, Integer instructorID) {
         this.username = username;
         this.password = password;
         this.role = role;

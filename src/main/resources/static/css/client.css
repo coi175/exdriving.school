@@ -1,0 +1,369 @@
+.client_block {
+    background-color: #65c1ff;
+    border-radius: 15px 0 0 15px;
+    box-shadow: -0.1em 0.4em 5px rgba(122,122,122,0.5);
+    padding: 15px 0;
+}
+
+.instructor_block {
+    background-color: #a5e4fd;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0.1em 0.4em 5px rgba(122,122,122,0.5);
+    padding: 15px 0;
+}
+
+.basic_info_item {
+    padding-left: 25%;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 1.8em;
+    font-family: Open Sans, Arial, sans-serif;
+
+}
+
+.basic_info_data {
+    font-weight: bold;
+    color: black;
+    background: rgba(0,0,0, 0.1);
+    padding: 3px 6px;
+    border-radius: 10px;
+}
+
+/* Конец блока базовой информации */
+
+/* Блок вкладок*/
+
+.tab {
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.tab button {
+    background-color:  #a5e4fd;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    box-shadow: 0 0 5px rgba(122,122,122,0.5);
+    margin-bottom: 5px;
+}
+
+.tab button:hover {
+    background-color: #65c1ff;
+}
+
+.tab button.active {
+    background-color: #fcc810;
+}
+
+.tablinks {
+    margin-right: 10px;
+    margin-left: 10px;
+    border-radius: 15px;
+    width: 260px;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    margin-top: 10px;
+    -webkit-animation: fadeEffect 1s;
+    animation: fadeEffect 1s;
+}
+
+/* Скрытие вкладки с эффектом затухания (анимация)*/
+@-webkit-keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+/* Оценки */
+
+.mark_average {
+    margin: 0 auto;
+    background: #65c1ff;
+    padding: 100px 50px;
+    border-radius: 100%;
+    font-weight: bold;
+    font-size: 60px;
+    box-shadow: 0.1em 0.1em 15px rgba(122,122,122,0.8);
+}
+
+.mark_average_title {
+    margin-bottom: 120px;
+    margin-top: 0;
+}
+
+.mark_list_line {
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.mark_list_item {
+    background: #65c1ff;
+    padding: 10px 5px;
+    border-radius: 15px 0 0 15px;
+    border-right: 1px solid black;
+}
+.mark_list_item:nth-child(2) {
+    border-radius: 0;
+}
+.mark_list_item:last-child {
+    border-radius: 0 15px 15px 0;
+    border-right: 0;
+}
+
+.mark_list_block {
+    background: #a5e4fd;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: -0.1em 0.1em 10px rgba(122,122,122,0.5);
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+/* Уведомления */
+
+.notification_block {
+    background: #a5e4fd;
+    padding: 20px 60px;
+    border-radius: 15px;
+    box-shadow: -0.1em 0.1em 10px rgba(122,122,122,0.5);
+    overflow-y: auto;
+    max-height: 600px;
+}
+
+.notification_item {
+    margin: 10px auto;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 15px 20px;
+    width: 100%;
+}
+
+.notification_title {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.notification_button {
+    background: #a5e4fd;
+    border: 1px solid #a5e4fd;
+    padding: 10px 15px;
+    color: black;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.notification_button:hover {
+    background: #65c1ff;
+}
+
+/* Сертификаты
+ */
+.certificate {
+    background: url("/sertificat.png") no-repeat top;
+    background-size: contain;
+    height: 400px;
+    margin: 0 auto;
+    border: 1px solid rgba(0,0,0,0.3);
+    box-shadow: 0.1em 0.4em 20px rgba(122,122,122,0.5);
+}
+
+.certificate_textline {
+    margin-bottom: 5px;
+    font-style: italic;
+}
+
+.certificate_number {
+    font-size: 16px;
+}
+
+.certificate_client {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.certificate_mark {
+    font-weight: bold;
+}
+
+.certificate_date {
+    margin-top: 50px;
+    margin-left: 350px;
+}
+
+.download_certificate {
+    margin-top: 100px;
+    font-size: 18px;
+    text-underline-mode: none;
+}
+
+/* Занятия */
+
+.current_lesson_block {
+    background: #65c1ff;
+    padding: 20px 40px;
+    margin: 20px 20px;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.2em 15px rgba(122,122,122,0.5);
+}
+
+.current_lesson_block_item {
+    margin-top: 7px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    line-height: 1.8em;
+    font-family: Open Sans, Arial, sans-serif;
+}
+
+.lesson_data {
+    font-weight: bold;
+    color: black;
+    background: rgba(0,0,0, 0.1);
+    padding: 3px 6px;
+    border-radius: 10px;
+}
+
+.cancel_lesson_button {
+    background: #65c1ff;
+    border: 1px solid #65c1ff;
+    padding: 10px 15px;
+    color: black;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0.1em 0.1em 5px rgba(122,122,122,0.5);
+}
+
+.cancel_lesson_button:hover {
+    background: #a5e4fd;
+
+}
+.cancel_lesson_button:active {
+    background: #fcc810;
+}
+
+.cancel_lesson_button:focus {
+    outline: none;
+}
+
+/* список уроков */
+.lesson_list_block {
+    background: #a5e4fd;
+    padding: 30px 20px 10px 20px;
+    margin: 20px 20px;
+    border-radius: 15px;
+    max-height: 500px;
+    overflow-y: auto;
+    box-shadow: 0.1em 0.2em 15px rgba(122,122,122,0.5);
+}
+
+
+.lesson_list_item {
+    background: #65c1ff;
+    border: 1px solid #65c1ff;
+    padding: 10px 15px;
+    color: black;
+    margin-right:10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(122,122,122,0.5);
+}
+
+.lesson_list_item:hover {
+    background: #a5e4fd;
+
+}
+.lesson_list_item:active {
+    background: #fcc810;
+}
+
+.lesson_list_item:focus {
+    outline: none;
+}
+
+/* модальное окно (всплывающий div) */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #65c1ff;
+    border-radius: 20px;
+    margin: auto;
+    padding: 5px 20px 20px 20px;
+    box-shadow: 0.1em 0.1em 5px rgba(122,122,122,0.5);
+    width: 30%;
+}
+
+.close {
+    color: #ff0000;
+    font-size: 40px;
+    font-weight: bold;
+    align-self: end;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content-item {
+    margin-bottom: 7px;
+    font-size: 18px;
+    line-height: 1.8em;
+    font-family: Open Sans, Arial, sans-serif;
+}
+
+.modal_content_item_data {
+    font-weight: bold;
+    color: black;
+    background: rgba(0,0,0, 0.1);
+    padding: 3px 6px;
+    border-radius: 10px;
+}
+
+.record_to_lesson_button {
+    background: #a5e4fd;
+    border: 1px solid #65c1ff;
+    padding: 10px 15px;
+    color: black;
+    margin: 10px auto;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(122,122,122,0.5);
+    width: 30%;
+}
+
+.record_to_lesson_button:hover {
+    background: #94dafc;
+
+}
+.record_to_lesson_button:active {
+    background: #fcc810;
+}
+
+.record_to_lesson_button:focus {
+    outline: none;
+}

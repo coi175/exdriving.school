@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class InstructorController {
     @GetMapping("/instructor")
     public String instructor() {
-        return "/panels/instructor";
+        return "/panels/instructorPanel/instructor";
     }
 }
