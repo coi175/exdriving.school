@@ -17,6 +17,11 @@ $.ajax({
         });
 
         let average = sum / i;
-        $('#markAverage').text(average.toFixed(2) + "/" + "5");
+        if(average) {
+            $('#markAverage').text(average.toFixed(2) + "/" + "5");
+        }
+        else{
+            $('#markAverage').text("5.00/5");
+        }
     }
 });

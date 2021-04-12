@@ -24,7 +24,10 @@ public class Lesson {
     private int studentsLimit;
 
     @ToString.Exclude
-    @OneToMany(mappedBy="lesson", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy="lesson", cascade = {
+            CascadeType.MERGE,
+            CascadeType.PERSIST
+    }, fetch = FetchType.LAZY)
     @Getter @Setter
     private List<Client> clients = new ArrayList<>();
 

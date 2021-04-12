@@ -60,7 +60,7 @@ public class ClientController {
         Lesson lesson = client.getLesson();
         List<String> lessonInfo = new ArrayList<>();
         if (lesson != null) {
-            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
             String date = format.format(lesson.getDate());
             lessonInfo.add(date);
             lessonInfo.add(lesson.getClients().size() + "");
@@ -88,9 +88,9 @@ public class ClientController {
             public int compare(Lesson lesson, Lesson t1) {
                 return lesson.getDate().compareTo(t1.getDate());
             }
-        }.reversed());
+        });
 
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
         for(Lesson lesson : lessonList) {
             String date = format.format(lesson.getDate());
             String info = lesson.getId() + "/" + date + "/" + lesson.getPlace().getAddress() + "/" + lesson.getStudentsLimit() + "/" + lesson.getClients().size() + "/";
@@ -103,9 +103,14 @@ public class ClientController {
     public @ResponseBody
     ResponseEntity<?> recordToLesson(@RequestBody String lessonID) {
         client = getClientFromSecurity();
-        Integer id = Integer.parseInt(lessonID.substring(0,1));
-        clientServiceIml.recordToLesson(client, id);
-        return ResponseEntity.ok("200");
+        Integer id = Integer.parseInt(lessonID.substring(0, lessonID.length()-1));
+        if(client.getRemainingHours() > 0) {
+            clientServiceIml.recordToLesson(client, id);
+            return ResponseEntity.ok("200");
+        }
+        else {
+            return ResponseEntity.badRequest().body("404");
+        }
     }
 
     @PostMapping("/cancelRecording")
@@ -148,7 +153,7 @@ public class ClientController {
     Map<Date, String> getMarks(Model model) {
         client = getClientFromSecurity();
         Map<Date, String> data = new TreeMap<>(Comparator.reverseOrder());
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
         for(Mark mark : client.getMarks()) {
             String date = format.format(mark.getLesson().getDate());

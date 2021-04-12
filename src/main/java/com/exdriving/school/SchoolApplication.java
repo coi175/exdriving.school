@@ -18,7 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 
 @SpringBootApplication
-public class SchoolApplication implements CommandLineRunner {
+public class SchoolApplication {
 	private static final Logger log = LoggerFactory.getLogger(SchoolApplication.class);
 
 	@Autowired
@@ -26,23 +26,6 @@ public class SchoolApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SchoolApplication.class, args);
-	}
-
-	@Override
-	public void run(String... args) {
-
-		log.info("StartApplication...");
-
-		User user = repository.findByUsername("client1");
-		System.out.println(user.getUsername());
-		System.out.println(user.getPassword());
-
-
-
-
-		System.out.println("1");
-
-
 	}
 
 }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
     // получаем запись по логину
-    <Optional> Instructor findClientById(Integer id);
+    <Optional> Instructor findInstructorById(Integer id);
 }

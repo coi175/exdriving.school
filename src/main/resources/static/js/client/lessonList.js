@@ -44,7 +44,6 @@ function getLessonList() {
             });
         },
         error: function (er) {
-            getLessonList();
             console.log(er);
         }
     });
