@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css"
           href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
     <link th:href="@{/css/client.css}" rel="stylesheet" />
+    <link th:href="@{/css/tabs.css}" rel="stylesheet" />
     <script type="text/javascript"
           src="webjars/jquery/3.0.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
@@ -25,32 +26,33 @@
 </head>
 <body>
     <div class="container">
+        <!------------ Базовая информация о клиенте и прикрепленном к нему инструкторе ----------->
         <div class="row basic_info">
             <div class="col client_block">
                 <div class="basic_info_item">
-                    Здравствуйте, <span id="clientName" class="basic_info_data">Имя фамилия:</span>
+                    Здравствуйте, <span id="clientName" class="basic_info_data"></span>
                 </div>
 
                 <div class="basic_info_item">
-                    Оставшиеся часы: <br> <span id="remainingHours" class="basic_info_data">5 ч.</span>
+                    Оставшиеся часы: <br> <span id="remainingHours" class="basic_info_data"></span>
                 </div>
 
                 <div class="basic_info_item">
-                    Потраченные часы: <br> <span id="spentHours" class="basic_info_data">2 ч.</span>
+                    Потраченные часы: <br> <span id="spentHours" class="basic_info_data"></span>
                 </div>
             </div>
 
             <div class="col instructor_block">
                 <div class ="basic_info_item">
-                    Ваш инструктор: <span id="instructorName" class="basic_info_data">Имя Фамилия</span>
+                    Ваш инструктор: <span id="instructorName" class="basic_info_data"></span>
                 </div>
 
                 <div class="basic_info_item">
-                    Кол-во учеников: <br> <span id="studentsCount" class="basic_info_data">8 уч.</span>
+                    Кол-во учеников: <br> <span id="studentsCount" class="basic_info_data"></span>
                 </div>
 
                 <div class="basic_info_item">
-                    Машина: <br><span id="instructorCar" class="basic_info_data">Reno Logan A134CA77</span>
+                    Машина: <br><span id="instructorCar" class="basic_info_data"></span>
                 </div>
             </div>
         </div>
@@ -68,7 +70,7 @@
 
         <!-- Вкладки, между которыми может переключаться пользователь -->
 
-        <!-- ЗАНЯТИЯ -->
+        <!-------------------------------------- Вкладка "Занятия" ------------------------------------->
         <div id="Lessons" class="tabcontent">
             <div class="row mt-4">
                 <div class="col text-center">
@@ -93,7 +95,7 @@
             </div>
         </div>
 
-        <!-- УВЕДОМЛЕНИЯ -->
+        <!-------------------------------------- Вкладка "Уведомления" ------------------------------------->
         <div id="Notifications" class="tabcontent">
             <div id = "NotificationList" class="row notification_block">
 
@@ -103,7 +105,7 @@
             </div>
         </div>
 
-        <!-- ОЦЕНКИ -->
+        <!-------------------------------------- Вкладка "Оценки"  ------------------------------------->
         <div id="Marks" class="tabcontent">
             <div class="row mt-4">
                 <div class="col text-center mark_average_block">
@@ -133,7 +135,7 @@
             </div>
         </div>
 
-        <!-- СЕРТИФИКАТЫ -->
+        <!-------------------------------------- Вкладка "Сертификаты" ------------------------------------->
         <div id="Certificates" class="tabcontent">
 
 

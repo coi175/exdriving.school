@@ -19,4 +19,4 @@ function getBasicInfo() {
     });
 }
 
-getBasicInfo();
+setTimeout(getBasicInfo, 100);

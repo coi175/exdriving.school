@@ -1,12 +1,15 @@
 package com.exdriving.school.service.serviceIml;
 
 import com.exdriving.school.domain.Client;
+import com.exdriving.school.domain.Instructor;
 import com.exdriving.school.domain.Lesson;
 import com.exdriving.school.domain.Notification;
 import com.exdriving.school.repos.ClientRepository;
 import com.exdriving.school.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ClientServiceIml implements ClientService {
@@ -22,6 +25,11 @@ public class ClientServiceIml implements ClientService {
     public void removeNotifications(Client client) {
         client.getNotifications().clear();
         clientRepository.save(client);
+    }
+
+    @Override
+    public List<Client> getAllClients() {
+        return clientRepository.findAll();
     }
 
     @Override
@@ -43,4 +51,24 @@ public class ClientServiceIml implements ClientService {
         }
         clientRepository.save(client);
     }
+
+    @Override
+    public void changeData(Client client, Instructor instructor, Integer remainingHours) {
+        client.setInstructor(instructor);
+        client.setRemainingHours(remainingHours);
+        clientRepository.saveAndFlush(client);
+    }
+
+    @Override
+    public Client createClient(String firstName, String lastName, String email, Integer hoursLimit, Instructor instructor) {
+        Client client = new Client();
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmail(email);
+        client.setRemainingHours(hoursLimit);
+        client.setInstructor(instructor);
+        return clientRepository.saveAndFlush(client);
+    }
+
+
 }

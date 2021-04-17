@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
+/**
+ * Репозиторий для работы с занятиями
+ */
 public interface LessonRepository extends JpaRepository<Lesson, Integer> {
     <Optional> Lesson findLessonById(Integer integer);
 }

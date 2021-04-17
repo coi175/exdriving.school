@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css"
           href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
     <link th:href="@{/css/instructor.css}" rel="stylesheet" />
+    <link th:href="@{/css/tabs.css}" rel="stylesheet" />
     <script type="text/javascript"
             src="webjars/jquery/3.0.0/jquery.min.js"></script>
 
@@ -19,25 +20,26 @@
 </head>
 <body>
 <div class="container">
+    <!-------------------------------------- Базовая информация об инструкторе ------------------------------------->
     <div class="row basic_info text-center">
         <div class="col basic_info_block">
             <div class="basic_info_item">
-                Здравствуйте, <span id="instructorName" class="basic_info_data">Имя фамилия:</span>
+                Здравствуйте, <span id="instructorName" class="basic_info_data"></span>
             </div>
 
             <div class="basic_info_item">
-                Ваша машина: <br> <span id="instructorCar" class="basic_info_data">5 ч.</span>
+                Ваша машина: <br> <span id="instructorCar" class="basic_info_data"></span>
             </div>
 
             <div class="basic_info_item">
-                Ваши ученики: <br> <span id="studentsCount" class="basic_info_data">2 ч.</span>
+                Ваши ученики: <br> <span id="studentsCount" class="basic_info_data"></span>
             </div>
         </div>
     </div>
 
+    <!------------------------------------ Кнопки переключения между вкладками ----------------------------------->
     <div class="row mt-4">
         <div class="tab">
-            <!-- Кнопки для переключения между вкладками-->
             <button id="LessonTab" class="tablinks" onclick="openTab(event, 'Lessons')">Расписание занятий</button>
             <button id="MarksTab" class="tablinks" onclick="openTab(event, 'MarksToLessons')">Проставление оценок</button>
             <button id="CreateLessonTab" class="tablinks" onclick="openTab(event, 'LessonCreation')">Добавление занятия</button>
@@ -48,14 +50,14 @@
 
     <!-- Вкладки, между которыми может переключаться пользователь -->
 
-    <!-- Расписание занятий -->
+    <!-------------------------------------- Вкладка "Расписание занятий" ------------------------------------->
     <div id="Lessons" class="tabcontent">
         <div id="LessonsBlock" class="lesson_block d-flex mt-2" >
 
         </div>
     </div>
 
-    <!-- Оценки за занятия -->
+    <!-------------------------------------- Вкладка "Оценки за занятия" ------------------------------------->
     <div id="MarksToLessons" class="tabcontent">
         <div class="row form-group">
             <div class="col">
@@ -93,7 +95,7 @@
         </div>
     </div>
 
-    <!-- Добавление занятия-->
+    <!-------------------------------------- Вкладка "Добавление занятия" ------------------------------------->
     <div id="LessonCreation" class="tabcontent">
         <div class="row form-group">
             <div class="col">
@@ -144,7 +146,7 @@
         </div>
     </div>
 
-    <!-- Список клиентов -->
+    <!-------------------------------------- Вкладка "Список клиентов" ------------------------------------->
     <div id="ClientsList" class="tabcontent">
         <div class="row mt-4">
             <div id="clientListBlock" class="col client_list_block">
@@ -159,7 +161,6 @@
                         <span style="font-weight: bold">Записан на занятие</span>
                     </div>
                 </div>
-
 
             </div>
         </div>

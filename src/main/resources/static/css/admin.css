@@ -1,0 +1,340 @@
+.basic_info_block {
+    background-color: #65c1ff;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.2em 5px rgba(122,122,122,0.5);
+    padding: 30px 0;
+}
+
+.admin_username_text {
+    font-weight: bold;
+    color: black;
+    background: rgba(0,0,0, 0.1);
+    padding: 3px 6px;
+    border-radius: 10px;
+}
+
+/* список клиентов */
+
+.client_list_line {
+    margin-bottom: 10px;
+    background: #65c1ff;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.client_list_line_item {
+    padding: 10px 5px;
+    border-radius: 15px 0 0 15px;
+    border-right: 1px solid black;
+}
+.client_list_line_item:nth-child(2) {
+    border-radius: 0;
+}
+.client_list_line_item:nth-child(3) {
+    border-radius: 0;
+}
+.client_list_line_item:nth-child(4){
+    border-radius: 0 15px 15px 0;
+    border-right: 0;
+}
+
+
+.client_list_block {
+    background: #a5e4fd;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: -0.1em 0.1em 10px rgba(122,122,122,0.5);
+    overflow-y: auto;
+    max-height: 700px;
+    /*Запрет выделения текста*/
+    -ms-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+
+.client_item:hover {
+    background: #529fd4;
+}
+
+.client_item:active {
+    background: #fcc810;
+}
+
+/* инфа о клиенте */
+.client_info_block {
+    padding: 0 15px;
+    margin-top: 20px;
+}
+
+.client_basic_info_block {
+    background-color: #65c1ff;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.2em 5px rgba(122,122,122,0.5);
+    padding: 15px 0;
+    text-align: center;
+}
+
+.client_basic_info_block_item {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 1.8em;
+    font-family: Open Sans, Arial, sans-serif;
+
+}
+
+.client_basic_info_block_data {
+    font-weight: bold;
+    color: black;
+    background: rgba(0,0,0, 0.1);
+    padding: 3px 6px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.button_style {
+    background: #a5e4fd;
+    border: 1px solid #65c1ff;
+    padding: 10px 15px;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px rgba(122,122,122,0.5);
+}
+
+.button_style:hover {
+    background: #94dafc;
+
+}
+.button_style:active {
+    background: #fcc810;
+}
+
+.button_style:focus {
+    outline: none;
+}
+
+.back_button {
+    margin-right: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    align-self: flex-start;
+}
+
+
+/* оценки и сертификаты */
+.list_block_line {
+    margin-bottom: 8px;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.list_block_line_item {
+    display: flex;
+    background: #65c1ff;
+    padding: 7px 5px;
+    border-radius: 15px 0 0 15px;
+    border-right: 1px solid black;
+    align-items: center;
+    justify-content: center;
+}
+.list_block_line_item:nth-child(2) {
+    border-radius: 0;
+}
+.list_block_line_item:last-child {
+    border-radius: 0 15px 15px 0;
+    border-right: 0;
+}
+
+.list_block {
+    background: #a5e4fd;
+    padding: 15px 45px;
+    border-radius: 20px;
+    box-shadow: -0.1em 0.1em 10px rgba(122,122,122,0.5);
+    overflow-y: auto;
+    height: 250px;
+}
+
+/*
+Формы изменения
+ */
+
+.client_form_control {
+    justify-content: space-around;
+    box-shadow: 2px 2px 5px rgba(122,122,122,0.5);
+}
+
+.client_form_group {
+    background: #65c1ff;
+    padding: 30px;
+    margin: 0 0;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.1em 5px rgba(122,122,122,0.5);
+}
+.sbm_button {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* регистрация */
+.reg_block {
+    box-shadow: 2px 2px 5px rgba(122,122,122,0.5);
+    background: #65c1ff;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.reg_block:first-of-type {
+    margin-right: 20px;
+}
+
+.register_user_form {
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+}
+
+.register_user_form input {
+    text-align: center;
+}
+
+.register_user_form select {
+    text-align: center;
+}
+
+.register_user_form select:focus::placeholder {
+    color: transparent;
+}
+
+.register_user_form input:focus::-ms-input-placeholder {
+    color: transparent;
+}
+
+.register_user_form input:focus::placeholder {
+    color: transparent;
+}
+
+.reg_success {
+    display: none;
+    background: #41cb4a;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.1em 5px rgba(122,122,122,0.5);
+    text-align: center;
+
+
+}
+
+.reg_error {
+    display: none;
+    background: #ff0000;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.1em 5px rgba(122,122,122,0.5);
+    text-align: center;
+    margin-top: 50px;
+}
+
+.r_button {
+    width: 200px;
+
+}
+
+/* Добавление места занятий и машин */
+.data_add_block {
+    background: #65c1ff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.1em 10px rgba(122,122,122,0.5);
+}
+
+.data_add_button {
+    align-self: flex-end;
+    width: 200px;
+}
+
+/* Список инструкторов */
+/* список клиентов */
+
+.instructor_list_line {
+    margin-bottom: 10px;
+    background: #65c1ff;
+    border: 1px solid black;
+    border-radius: 15px;
+}
+.instructor_list_line_item {
+    padding: 10px 5px;
+    border-radius: 15px 0 0 15px;
+    border-right: 1px solid black;
+}
+.instructor_list_line_item:nth-child(2) {
+    border-radius: 0;
+}
+.instructor_list_line_item:nth-child(3){
+    border-radius: 0 15px 15px 0;
+    border-right: 0;
+}
+
+.instructor_list_block {
+    background: #a5e4fd;
+    padding: 45px;
+    border-radius: 15px;
+    box-shadow: -0.1em 0.1em 10px rgba(122,122,122,0.5);
+    overflow-y: auto;
+    max-height: 700px;
+    /*Запрет выделения текста*/
+    -ms-user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.instructor_item:hover {
+    background: #529fd4;
+}
+
+.instructor_item:active {
+    background: #fcc810;
+}
+
+/* Инфа об инструкторе */
+.instructor_info_block {
+    padding: 0 15px;
+    margin-top: 20px;
+}
+
+.instructor_basic_info_block {
+    background-color: #65c1ff;
+    border-radius: 15px;
+    box-shadow: 0.1em 0.2em 5px rgba(122,122,122,0.5);
+    padding: 15px 0;
+    text-align: center;
+}
+
+.instructor_basic_info_block_item {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    font-size: 16px;
+    line-height: 1.8em;
+    font-family: Open Sans, Arial, sans-serif;
+
+}
+
+.instructor_basic_info_block_data {
+    font-weight: bold;
+    color: black;
+    background: rgba(0,0,0, 0.1);
+    padding: 3px 6px;
+    border-radius: 10px;
+    margin-right: 10px;
+}
+
+.instructor_form_control {
+    box-shadow: 2px 2px 5px rgba(122,122,122,0.5);
+}
+
+.change_car_button {
+    width: 200px;
+}

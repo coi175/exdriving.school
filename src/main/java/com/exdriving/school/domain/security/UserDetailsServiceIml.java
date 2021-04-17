@@ -21,11 +21,13 @@ public class UserDetailsServiceIml implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // находим пользователя в базе данных через репозиторий
         final User user = userRepository.findByUsername(username);
         if(user == null) {
             throw new UsernameNotFoundException(username);
         }
 
+        // устанавлием роль (права доступа)
         Set<GrantedAuthority> grantedAuthorities = new HashSet< >();
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),

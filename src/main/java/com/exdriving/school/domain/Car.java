@@ -22,6 +22,10 @@ public class Car {
     @Getter @Setter
     private String model;
 
+    @OneToOne(mappedBy = "car")
+    @Getter @Setter
+    private Instructor instructor;
+
     public Car() {}
 
     public Car(String stateNumber, String model) {

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Неактивный. Своя реализация UserDetails
+ */
 public class MyUserDetails implements UserDetails {
     private User user;
 

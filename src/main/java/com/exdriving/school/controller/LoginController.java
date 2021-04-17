@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * Контроллер для входа в аккаунт
+ */
 @Controller
 public class LoginController {
     // привязываем страницу логина к адресу /login
@@ -15,7 +18,7 @@ public class LoginController {
         return "/login";
     }
 
-    // то же для рута, страница index
+    // привязываем страницу index к руту
     @GetMapping("/")
     public String index(Model model) {
         return "/index";

@@ -1,10 +1,334 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Панель администратора | ExDriving School</title>
+    <!-- css стили, бутстрап, javascript скрипты -->
+    <link rel="stylesheet" type="text/css"
+          href="webjars/bootstrap/4.1.1/css/bootstrap.min.css" />
+    <link th:href="@{/css/admin.css}" rel="stylesheet" />
+    <link th:href="@{/css/tabs.css}" rel="stylesheet" />
+    <script type="text/javascript"
+            src="webjars/jquery/3.0.0/jquery.min.js"></script>
+
+    <script type="text/javascript" th:src="@{/js/client/clientTabs.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/getBasicInfo.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/getClientList.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/clientInfo.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/registerUser.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/addData.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/getInstructorList.js}"></script>
+    <script type="text/javascript" th:src="@{/js/admin/instructorInfo.js}"></script>
 </head>
+
 <body>
-Admin!
+<div class="container">
+    <div class="row basic_info text-center">
+        <div class="col basic_info_block">
+            Здравствуйте, <span class="admin_username_text" id="AdminUsername"></span>. Вы вошли с правами администратора!
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="tab">
+            <!-- Кнопки для переключения между вкладками-->
+            <button id="ClientListButton" class="tablinks" onclick="openTab(event, 'ClientList')">Список клиентов</button>
+            <button id="InstructorListButton" class="tablinks" onclick="openTab(event, 'InstructorList')">Список инструкторов</button>
+            <button class="tablinks" onclick="openTab(event, 'AccountCreation')">Регистрация аккаунтов</button>
+            <button class="tablinks" onclick="openTab(event, 'PlaceAndCarCreation')">Добавление информации</button>
+        </div>
+    </div>
+
+
+    <!-- Вкладки, между которыми может переключаться пользователь -->
+
+    <!-------------------------------------- Вкладка "Список клиентов" ------------------------------------->
+    <div id="ClientList" class="tabcontent">
+        <!-------------------------------------- Список клиентов ------------------------------------->
+        <div class ="client_list_block mt-2" id="ClientListBlock">
+
+        </div>
+
+        <!-------------------- Информация о выбранном клиенте (скрыто по умолчанию) ----------->
+        <div id="ClientInfoBlock" class="col client_info_block" style="display: none">
+            <div class="row">
+                <button class="button_style back_button" onclick="closeClientInfo();">Назад</button>
+                <div class="col client_basic_info_block">
+                    <div class="client_basic_info_block_item">
+                        ID: <span id="ClientID" class="client_basic_info_block_data"></span>
+                        Имя: <span id="ClientName" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        Почта: <span id="ClientEmail" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        Прикрепленный инструктор: <span id="ClientInstructorName" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        Оставшиеся часы: <span id="ClientRemainingHours" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        Потраченные часы: <span id="ClientSpentHours" class="client_basic_info_block_data"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 text-center">
+                <div class="col">
+                    <div id="clientMarksBlock" class="col list_block">
+
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="clientCertificatesBlock" class="col list_block">
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="row form-group client_form_group">
+                        <div class="col">
+                            <label for="Instructors">Инструктор:</label>
+                            <select class="form-control client_form_control" id="Instructors" required>
+
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="RemainingHours">Оставшиеся часы:</label>
+                            <input type="text" name= "rHours" class="form-control client_form_control" id="RemainingHours">
+                        </div>
+                    </div>
+                    <button class="button_style sbm_button" onclick="changeClientData(this);">Изменить данные</button>
+                </div>
+
+                <div class="col">
+                    <div class="row form-group client_form_group">
+                        <div class="col">
+                            <label for="CertNumber">Номер сертификата:</label>
+                            <input type="text" name="cNum" class="form-control client_form_control" id="CertNumber">
+                        </div>
+                        <div class="col">
+                            <label for="CertMark">Оценка:</label>
+                            <input type="text" name="cMark" class="form-control client_form_control" id="CertMark">
+                        </div>
+                    </div>
+                    <button class="button_style sbm_button" onclick="giveCertForClient(this);">Выдать сертификат</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------- Вкладка "Список инструкторов" ------------------------------------->
+    <div id="InstructorList" class="tabcontent">
+        <!-------------------------------------- Список инструкторов ------------------------------------->
+        <div class ="instructor_list_block mt-2" id="InstructorListBlock">
+
+        </div>
+
+        <!----------------- Информация об инструкторе (скрыто по умолчанию) ---------------------->
+        <div id="InstructorInfoBlock" class="col instructor_info_block" style="display: none">
+            <div class="row">
+                <button class="button_style back_button" onclick="closeInstructorInfo();">Назад</button>
+                <div class="col client_basic_info_block">
+                    <div class="client_basic_info_block_item">
+
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        ID: <span id="InstructorID" class="client_basic_info_block_data"></span>
+                        Имя: <span id="InstructorName" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        Машина:<span id="InstructorCarName" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                        Количество учеников: <span id="InstructorStudentsCount" class="client_basic_info_block_data"></span>
+                    </div>
+
+                    <div class="client_basic_info_block_item">
+                       Количество занятий: <span id="InstructorLessonsCount" class="client_basic_info_block_data"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4 text-center">
+                <div class="col">
+                    <div id="InstructorClientsBlock" class="col list_block">
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="InstructorLessonsBlock" class="col list_block">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="row form-group client_form_group">
+                        <div class="col">
+                            <label for="Cars">Машина:</label>
+                            <select class="form-control instructor_form_control" id="Cars" required>
+
+                            </select>
+                        </div>
+                        <button class="button_style sbm_button change_car_button" onclick="changeCarForInstructor(this);">Изменить машину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------- Вкладка "Регистрация аккаунтов" ------------------------------------->
+    <div id="AccountCreation" class="tabcontent">
+        <div class="row">
+            <div class="col reg_block">
+                <h4 class="mb-4">
+                    Регистрация клиента:
+                </h4>
+                <form class="register_user_form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="ClientFirstNameForm" placeholder="Введите имя" name="clientFirstName">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="ClientLastNameForm" placeholder="Введите фамилию" name="clientLastName">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="ClientLoginForm" placeholder="Введите логин" name="clientLoginForm">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="ClientPasswordForm" placeholder="Введите пароль" name="clientPasswordForm">
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="ClientEmailForm" placeholder="Введите e-mail" name="clientEmail">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="ClientHoursLimitForm" placeholder="Введите лимит часов" name="clientHoursLimitForm">
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control" id="ClientInstructorForm">
+
+                        </select>
+                    </div>
+
+                    <button type="button" onclick="registerNewClient(this)" class="button_style r_button">Создать клиента</button>
+                </form>
+            </div>
+            <div class="col reg_block">
+                <h4 class="mb-4">
+                    Регистрация инструктора:
+                </h4>
+
+                <form class="register_user_form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="InstructorFirstNameForm" placeholder="Введите имя" name="clientFirstName">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="InstructorLastNameForm" placeholder="Введите фамилию" name="clientLastName">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="InstructorLoginForm" placeholder="Введите логин" name="clientLoginForm">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="InstructorPasswordForm" placeholder="Введите пароль" name="clientPasswordForm">
+                    </div>
+
+                    <div class="form-group">
+                        <select class="form-control" id="InstructorCarForm">
+
+                        </select>
+                    </div>
+
+                    <button type="button" onclick="registerNewInstructor(this)" class="button_style r_button">Создать инструктора</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="RegistrationError" class="row reg_error">
+            Регистрация не удалась! Пожалуйста, внимательно проверяйте введенные данные.
+        </div>
+
+        <div id="RegistrationSuccess" class="row reg_success">
+            Регистрация прошла успешно!
+        </div>
+    </div>
+
+    <!-------------------------------------- Вкладка "Добавление информации" ------------------------------------->
+    <div id="PlaceAndCarCreation" class="tabcontent text-center">
+        <h4 class="mb-4">
+            Добавление места занятий:
+        </h4>
+        <div class="row form-group data_add_block text-left">
+            <div class="col">
+                <label for="CityPlace">Населенный пункт:</label>
+                <input placeholder="г. Москва" class="form-control" id="CityPlace">
+            </div>
+            <div class="col">
+                <label for="StreetPlace">Улица:</label>
+                <input placeholder="ул. Долгириева" class="form-control" id="StreetPlace">
+            </div>
+            <div class="col">
+                <label for="HousePlace">Дом:</label>
+                <input placeholder="д. 55" class="form-control" id="HousePlace">
+            </div>
+
+            <button onclick ="createPlace(this);" class="button_style data_add_button">Добавить место</button>
+        </div>
+
+
+        <h4 class="mt-4 mb-4">
+            Добавление машины:
+        </h4>
+        <div class="row form-group data_add_block text-left">
+            <div class="col">
+                <label for="CarBrand">Марка машины:</label>
+                <input placeholder="Reno" class="form-control" id="CarBrand">
+            </div>
+            <div class="col">
+                <label for="CarModel">Модель машины</label>
+                <input placeholder="Logan" class="form-control" id="CarModel">
+            </div>
+            <div class="col">
+                <label for="CarNumber">Номер машины:</label>
+                <input placeholder="А938СУ777" class="form-control" id="CarNumber">
+            </div>
+
+            <button onclick ="createCar();" class="button_style data_add_button">Добавить машину</button>
+        </div>
+
+        <div id="DataAddError" class="row reg_error">
+            Добавление не удалось! Проверьте введенные данные и попробуйте снова.
+        </div>
+
+        <div id="DataAddSuccess" class="row reg_success">
+            Успешно добавлено!
+        </div>
+    </div>
+</div>
+
+<!-- открывает вкладку при загрузке страницы -->
+<script th:inline="javascript">
+    document.getElementById("ClientListButton").click()
+</script>
 </body>
 </html>

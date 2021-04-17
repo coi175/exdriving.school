@@ -32,6 +32,7 @@ $(document).ready(function() {
     $('#LessonTab').click(function(e) {
         getCurrentLesson();
         getLessonList();
+        getBasicInfo();
     });
 });
 // при загрузке страницы (т.к. вкладка занятия автоматически грузится при загрузке)

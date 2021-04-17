@@ -67,6 +67,10 @@ public class Client {
     @Getter @Setter
     private String lastName;
 
+    @Column(name="is_active")
+    @Getter @Setter
+    private boolean isActive;
+
     public void addNotification(Notification notification){
         this.notifications.add(notification);
         notification.getClients().add(this);

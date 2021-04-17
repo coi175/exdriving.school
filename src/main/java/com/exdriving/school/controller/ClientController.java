@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * Контролллер для панели (личного кабинета) клиента
+ */
 @Controller
 public class ClientController {
     @Autowired
@@ -28,16 +31,28 @@ public class ClientController {
 
     Client client;
 
+    /**
+     * Возвращает html страницу для клиента
+     */
     @GetMapping("/client")
     public String client() {
         return "/panels/clientPanel/client";
     }
-    @GetMapping("/client/")
 
+    /**
+     * Перенаправляет на правильный адрес, если пользователь ввёл неправильный в строку браузера
+     * @return
+     */
+    @GetMapping("/client/")
     public String clientRedirect() {
         return "redirect:/client";
     }
 
+    /**
+     * Возвращает базовую информацию о клиенте (ФИ, часы, пр. инструктор, информация о прикр. инструкторе)
+     * @param model
+     * @return Map<String, Object>
+     */
     @GetMapping("/clientBasicInfo")
     public @ResponseBody
     Map<String, Object> getBasicClientInf(Model model) {
@@ -49,10 +64,24 @@ public class ClientController {
         Instructor instructor = client.getInstructor();
         basicInfo.put("instructorName", instructor.getFirstName() + " " + instructor.getLastName());
         basicInfo.put("studentsCount", instructor.getClients().size());
-        basicInfo.put("instructorCar", instructor.getCar().getModel() + " " + instructor.getCar().getStateNumber());
+        if(instructor.getCar() != null) {
+            basicInfo.put("instructorCar", instructor.getCar().getModel() + " " + instructor.getCar().getStateNumber());
+        }
+        else {
+            basicInfo.put("instructorCar", "Не назначена");
+        }
         return basicInfo;
     }
 
+
+
+    //--------------------------- Вкладка "Занятия" -----------------------------
+
+    /**
+     * Возвращает информацию о текущем занятии
+     * @param model
+     * @return  List<String>
+     */
     @GetMapping("/currentLesson")
     public @ResponseBody
     List<String> getCurrentLesson(Model model) {
@@ -70,6 +99,11 @@ public class ClientController {
         return (lessonInfo.size() != 0) ? lessonInfo : null;
     }
 
+    /**
+     * Возвращает список занятий
+     * @param model
+     * @return List<String>
+     */
     @GetMapping("/lessonList")
     public @ResponseBody
     List<String> getLessonList(Model model) {
@@ -96,9 +130,17 @@ public class ClientController {
             String info = lesson.getId() + "/" + date + "/" + lesson.getPlace().getAddress() + "/" + lesson.getStudentsLimit() + "/" + lesson.getClients().size() + "/";
             lessons.add(info);
         }
-        return (lessons.size() != 0) ? lessons : null;
+        if(lessons.size() == 0) {
+            lessons.add("empty");
+        }
+        return lessons;
     }
 
+    /**
+     * Записывает клиента на занятие
+     * @param lessonID
+     * @return ResponseEntity<?>
+     */
     @PostMapping("/recordToLesson")
     public @ResponseBody
     ResponseEntity<?> recordToLesson(@RequestBody String lessonID) {
@@ -113,6 +155,10 @@ public class ClientController {
         }
     }
 
+    /**
+     * Отменяет запись на занятие
+     * @return ResponseEntity<?>
+     */
     @PostMapping("/cancelRecording")
     public @ResponseBody
     ResponseEntity<?> cancelRecording() {
@@ -127,6 +173,15 @@ public class ClientController {
 
     }
 
+
+
+    //--------------------------- Вкладка "Уведомления" -----------------------------
+
+    /**
+     * Возвращает список уведомлений
+     * @param model
+     * @return List<String>
+     */
     @GetMapping("/notifications")
     public @ResponseBody
     List<String> getNotifications(Model model) {
@@ -139,6 +194,10 @@ public class ClientController {
         return notifications;
     }
 
+    /**
+     * Очищает список уведомлений
+     * @return ResponseEntity<?>
+     */
     @PostMapping("/clearNotifications")
     public @ResponseBody
     ResponseEntity<?> clearNotifications() {
@@ -148,6 +207,13 @@ public class ClientController {
 
     }
 
+
+
+    //--------------------------- Вкладка "Оценки" -----------------------------
+
+    /**
+     * Возвращает список оценок
+     */
     @GetMapping("/marks")
     public @ResponseBody
     Map<Date, String> getMarks(Model model) {
@@ -162,6 +228,14 @@ public class ClientController {
         return data;
     }
 
+
+    //--------------------------- Вкладка "Сертификаты" -----------------------------
+
+    /**
+     * Возвращает список сертификатов
+     * @param model
+     * @return List<String>
+     */
     @GetMapping("/certificates")
     public @ResponseBody
     List<String> getCertificates(Model model) {
@@ -175,6 +249,14 @@ public class ClientController {
         return certificates;
     }
 
+
+
+    //--------------------------- Служебные функции  -----------------------------
+
+    /**
+     * Возвращает клиент по ID, полулченного из сессии из Spring Security
+     * @return
+     */
     private Client getClientFromSecurity() {
         // достаем ID клиента из пользователя в сессии Spring Security (User из бд и User из сессии Spring - две разных сущности)
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

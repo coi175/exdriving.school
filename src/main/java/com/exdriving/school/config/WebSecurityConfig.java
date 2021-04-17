@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/resources/**", "/static/**","/webjars/**", "/css/**", "/js/**", "*.js");
     }
 
-    // настраиваем вход, берем данные из userDetailsService, декодируе пароль и сверяем с ввдеенным
+    // настраиваем вход, берем данные из userDetailsService, декодируем пароль и сверяем с ввдеенным
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());

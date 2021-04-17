@@ -22,4 +22,11 @@ public class LessonPlaceServiceIml implements LessonPlaceService {
     public LessonPlace findLessonPlaceByAddress(String address) {
         return lessonPlaceRepository.findLessonPlaceByAddress(address);
     }
+
+    @Override
+    public void addPlace(String address) {
+        LessonPlace lessonPlace = new LessonPlace();
+        lessonPlace.setAddress(address);
+        lessonPlaceRepository.saveAndFlush(lessonPlace);
+    }
 }
