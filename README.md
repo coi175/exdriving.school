@@ -50,7 +50,7 @@
 
 
 
-## ----------------------------------Translated with Google Translator------------------------------
+## -------------Translated with Google Translator-------------------
 
 This is a Java web application that I developed to consolidate knowledge and gain new ones, that is, in fact, this is my training project.
 ## The essence of the web application
@@ -99,6 +99,6 @@ Basically, the project was written to consolidate and gain knowledge of Java and
 - Lombok for code shortening.
 
 ## Useful links
-** Database file ** - https://drive.google.com/file/d/1flONbBWDsVpCOVhVlnur1Wa3a2wzeblk/view?usp=sharing
-** Application video ** - https://drive.google.com/file/d/1DKqOBIjv12NXGNBnof73ScL_8JWeAyO1/view?usp=sharing 
+**Database file** - https://drive.google.com/file/d/1flONbBWDsVpCOVhVlnur1Wa3a2wzeblk/view?usp=sharing
+**Application video** - https://drive.google.com/file/d/1DKqOBIjv12NXGNBnof73ScL_8JWeAyO1/view?usp=sharing 
 
