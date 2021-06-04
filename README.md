@@ -14,7 +14,7 @@
 - выставлять оценки клиентами;
 - просматривать список клиентов;
 
-**Администратор может: **
+**Администратор может:**
 - просматривать список клиентов, открывать и просматривать инфомрацию о любом клиенте, изменять лимит часов клиента, прикрепленного инструктора, выдавать сертификаты;
 - просматривать список инструкторов, открывать и просматривать информацию о любом инструкторе, прикреплять к инструктору другую машину;
 - регистрировать новые аккаунты для клиента и инструктора (по задумке только админ может регистраировать, т.к. данные берутся из договора);
@@ -50,24 +50,25 @@
 
 
 
-##----------------------------------Translated with Google Translator------------------------------
+## ----------------------------------Translated with Google Translator------------------------------
+
 This is a Java web application that I developed to consolidate knowledge and gain new ones, that is, in fact, this is my training project.
 ## The essence of the web application
 This is a driving school application that has three user roles: customer, instructor and administrator.
 
-** Client can: **
+**Client can:**
 - view the list of activities, sign up for them, cancel the entry;
 - view and clear notifications;
 - view your grades;
 - view and download certificates in PDF format.
 
-** The instructor can: **
+**The instructor can:**
 - view the list of classes and the clients who signed up for them, cancel classes (when checked, a notification is sent to the signed up clients)
 - create new activities;
 - to give ratings by clients;
 - view the list of clients;
 
-** Administrator can: **
+**Administrator can:**
 - view the list of clients, open and view information about any client, change the limit of hours of the client attached to the instructor, issue certificates;
 - view the list of instructors, open and view information about any instructor, attach another car to the instructor;
 - register new accounts for the client and the instructor (as planned, only the admin can register, since the data is taken from the contract);
