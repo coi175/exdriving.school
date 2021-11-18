@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,11 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.List;
 
 @SpringBootApplication
-public class SchoolApplication {
-	private static final Logger log = LoggerFactory.getLogger(SchoolApplication.class);
-
-	@Autowired
-	private UserRepository repository;
+public class SchoolApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(SchoolApplication.class, args);

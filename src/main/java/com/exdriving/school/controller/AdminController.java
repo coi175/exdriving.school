@@ -48,7 +48,7 @@ public class AdminController {
      */
     @GetMapping("/admin")
     public String admin() {
-        return "/panels/adminPanel/admin";
+        return "panels/adminPanel/admin";
     }
 
     /**
@@ -57,19 +57,23 @@ public class AdminController {
      */
     @GetMapping("/admin/")
     public String adminRedirect() {
-        return "redirect:/admin";
+        return "redirect:admin";
     }
 
     /**
      * Возвращает базовую информацию об админе (никнейм)
      */
-    @GetMapping("adminBasicInfo")
+    @GetMapping("/adminBasicInfo")
     public @ResponseBody
     List<String> getAdminBasicInfo() {
+        // получаем запись об аутентификации
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        // получаем инфу о пользователе который там лежит
         UserDetails userDetails = (UserDetails) auth.getPrincipal();
         List<String> values = new ArrayList<>();
+        // добавляем username пользователя в список
         values.add(userDetails.getUsername());
+        // возвращаем на сервер
         return values;
     }
 
@@ -83,11 +87,16 @@ public class AdminController {
     public @ResponseBody
     Map<String, String> getClientList(Model model) {
         Map<String, String> clients = new TreeMap<>(Comparator.naturalOrder());
+        // получаем всех клиентов из базы данных и перебираем их в цикле for
         for(Client client : clientServiceIml.getAllClients()) {
+            // достаем имя фамилию клиента
             String name = client.getFirstName() + " " + client.getLastName();
+            // достаем имя фамилию инструктора прикрепленного к клиенту
             String instructorName = client.getInstructor().getFirstName() + " " + client.getInstructor().getLastName();
+            // добавляем в Map
             clients.put(name, client.getId() + "/" + name + "/" + client.getEmail() + "/" + client.getRemainingHours() + "/" + instructorName);
         }
+        // посылаем map обратно в браузер
         return clients;
     }
 

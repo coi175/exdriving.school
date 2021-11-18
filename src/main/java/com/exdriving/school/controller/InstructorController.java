@@ -51,7 +51,7 @@ public class InstructorController {
      */
     @GetMapping("/instructor")
     public String instructor() {
-        return "/panels/instructorPanel/instructor";
+        return "panels/instructorPanel/instructor";
     }
 
     /**
@@ -59,7 +59,7 @@ public class InstructorController {
      */
     @GetMapping("/instructor/")
     public String instructorRedirect() {
-        return "redirect:/instructor";
+        return "redirect:instructor";
     }
 
     /**

@@ -36,7 +36,7 @@ public class ClientController {
      */
     @GetMapping("/client")
     public String client() {
-        return "/panels/clientPanel/client";
+        return "panels/clientPanel/client";
     }
 
     /**
@@ -45,7 +45,7 @@ public class ClientController {
      */
     @GetMapping("/client/")
     public String clientRedirect() {
-        return "redirect:/client";
+        return "redirect:client";
     }
 
     /**

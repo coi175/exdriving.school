@@ -25,9 +25,12 @@ public class CarServiceIml implements CarService {
 
     @Override
     public void addCar(String brand, String model, String number) {
+        // создаем новую машину
         Car car = new Car();
+        // устанавиваем инфу о ней
         car.setModel(brand + " " + model);
         car.setStateNumber(number);
+        // сохраняем в базе данных
         carRepository.saveAndFlush(car);
     }
 }

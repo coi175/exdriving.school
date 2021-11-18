@@ -36,12 +36,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                // разрешаем доступ на страницы определенным ролям
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/client/**").hasRole("CLIENT")
                 .antMatchers("/instructor/**").hasRole("INSTRUCTOR")
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                // устанавливаем страницу логина и URL на который перенаправляет после успешного лоина
                 .formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/default")
@@ -58,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**","/webjars/**", "/css/**", "/js/**", "*.js");
+                .antMatchers("/resources/**", "/static/**","/webjars/**", "/css/**", "/js/**", "*.js", "/img/**");
     }
 
     // настраиваем вход, берем данные из userDetailsService, декодируем пароль и сверяем с ввдеенным

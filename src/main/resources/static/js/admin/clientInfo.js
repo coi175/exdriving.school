@@ -1,11 +1,17 @@
+// функция вызывается при клике на пользователя
 function clientClick(dv) {
+    // получаем ID этого пользователя
     let id = $(dv).children(".client_list_line_item:last").text();
+    // получаем информацию о пользователе с сервера по ID
     getClientInfoFromServer(id);
+    // получаем список инструкторов, который вставляем в список выбора
     getInstructors();
+    // делаем блок с инфой видимым
     openClientInfo();
 }
 
 function getClientInfoFromServer(id) {
+    // Post запрос на сервер
     $.ajax({
         method: "POST",
         url: "/openAndGetClientInfo",
@@ -16,25 +22,31 @@ function getClientInfoFromServer(id) {
         data:  JSON.stringify({"id" : id}),
         dataType: 'json',
 
+        //Если он удачный
         success: function(data) {
+            // создаем новый MAP, в который пихаем полученную информацию
             let map = new Map();
             $.each(data, function(key, value) {
                 map.set(key, value);
             });
+            //Сейчас наш Map = это {"ключ" : ["значение", "значение", "значение"], "ключ2" : [...], ...}
+            // то есть значения - это списки строк
 
             // базовая информация
             let baseInfo = map.get("baseInfo");
-            $('#ClientID').text(baseInfo[0]);
-            $('#ClientName').text(baseInfo[1]);
+            $('#ClientID').text(baseInfo[0]); // в элемент с ID #ClientId устанавливаем текст
+            $('#ClientName').text(baseInfo[1]); // и т.д.
             $('#ClientEmail').text(baseInfo[2]);
             $('#ClientInstructorName').text(baseInfo[3]);
             $('#ClientRemainingHours').text(baseInfo[4]);
             $('#ClientSpentHours').text(baseInfo[5]);
             $('#RemainingHours').val(baseInfo[4]);
-            // оценки
+
+            // получаем список оценок
             let marks = map.get("marks")
             let sum = 0;
             let i = 0
+            // добавляем на страницу html
             $('#clientMarksBlock').empty().append(" <div class=\"row mb-4\">\n" +
                 "                            <h4>Средняя оценка: <span id=\"averageMark\" class=\"client_basic_info_block_data\"></span></h4>\n" +
                 "                        </div>\n" +
@@ -49,10 +61,15 @@ function getClientInfoFromServer(id) {
                 "                                <span style=\"font-weight: bold\">Оценка:</span>\n" +
                 "                            </div>\n" +
                 "                        </div>");
+            // перебираем все оценки какие у нас есть
             for(i; i < marks.length; i++) {
+                // плюсуем оценку в общую сумму, чтобы потом посчитать среднее
                 sum += parseInt(marks[i].split('/')[1]);
+                // достаем очередную оценку из списка
                 let values = marks[i].split('/');
+                // разделяем значения, то есть дата оценки, занятие, сама оценка
                 let tm = values[0].split(" ");
+                // добавляем новый блок (линию списка)
                 $('#clientMarksBlock').append("<div class=\"row text-center list_block_line\">\n" +
                     "                            <div class=\"col list_block_line_item\">\n" +
                     "                                <span>" + tm[0] + "</span>\n" +
@@ -65,12 +82,14 @@ function getClientInfoFromServer(id) {
                     "                            </div>\n" +
                     "                        </div>");
             }
+            // считаем среднее - сумма делить на кол-во оценок
             let average = sum / i;
+            // если оценки были, то среднее тоже есть
             if(average) {
-                $("#averageMark").text(average.toFixed(2));
+                $("#averageMark").text(average.toFixed(2)); // устанавливаем текст оценки
             }
             else {
-                $("#averageMark").text("?");
+                $("#averageMark").text("?"); // ставим знак вопроса вместо средней оценки
             }
 
             // сертификаты
